@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+	<title>Flash</title>
+</head>
+<body>
+	<header>
+		<div class="contenedor">
+			<h2 class="logotipo">Flash SOS</h2>
+			<nav>
+				<a href="#" class="activo">Inicio</a>
+				<a href="#">Cursos</a>
+				<a href="#">Productos</a>
+				<a href="#">Aplicación</a>
+				<a href="#">VR GAME</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<div class="pelicula-principal">
+			<div class="contenedor">
+				<h1 class="titulo">EMERGENCIA</h1>
+				<p class="descripcion">
+Somos la primera plataforma en Repubica Dominicana que 
+					capacita a jóvenes en primeros auxilios a través de 
+					cursos virtuales, videojuegos de realidad virtual y 
+					venta de equipo de emergencia. Nuestro objetivo es 
+					entrenar a la próxima generación para salvar vidas 
+					ante cualquier emergencia.
+
+				</p>
+				<button role="button" class="boton"><i class="fas fa-play"></i>Empieza ya</button>
+				<button role="button" class="boton"><i class="fas fa-info-circle"></i>Más información</button>
+			</div>
+		</div>
+
+<div class="peliculas-recomendadas contenedor"> 
+	<div class="contenedor-titulo-controles">
+		<h3> Cursos Disponibles</h3>
+		<div class="indicadores"></div>
+	</div>
+	<div class="contenedor-principal">
+			<button role="button" id="flecha-izquierda-2" class="flecha-izquierda" aria-label="Left arrow"><i class="fas fa-angle-left"></i></button></div>
+<button role="button" id="flecha-izquierda" class="flecha-izquierda" aria-label="Left arrow"><i class="fas fa-angle-left"></i></button>
+
+		<div class="contenedor-carousel">
+			<div class="carousel">
+				<div class="pelicula">
+					<a href="#"><img src="img/Atención-de-víctimas.png" alt="Reanimacion cardiopulmonar"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/Bienestar-y-Seguridad-de-los-Intervinientes.png" alt="Primeros Auxilios"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/Despliegue-operativo.jpg" alt="Desastres civiles"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/foto-slide-24.jpg" alt="Emergencias geriatricas"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/foto-slide-9-1.png" alt="Precaucion ante incendios"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/plantilla_slide-2.jpg" alt="Manejo de pacientes dificiles"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/Riesgos-slide-16.png" alt="Emergencias quimicas"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/urgencias-geriatricas-slide.jpg" alt="Urgencias geriatricas"></a>
+				</div>
+				<div class="pelicula">
+					<a href="#"><img src="img/urgencias-pediatricas-slide.jpg" alt="Urgencias pediatricas"></a>
+				</div>
+			</div>
+		</div>
+		<button role="button" id="flecha-derecha" class="flecha-derecha" aria-label="Right Arrow"><i class="fas fa-angle-right"></i></button>
+	</div>
+</div>
+</main>
+
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+   const numeroPaginas = Math.ceil(peliculas.length / 5);
+   for(let i = 0; i < numeroPaginas; i++){
+       const indicador = document.createElement('button');
+
+       if(i === 0){
+           indicador.classList.add('activo');
+       }
+
+       indicador.addEventListener('click', () => {
+           fila.scrollLeft = i * fila.offsetWidth;
+
+           document.querySelector('.indicadores .activo').classList.remove('activo');
+           indicador.classList.add('activo');
+       });
+
+       document.querySelector('.indicadores').appendChild(indicador);
+   }
+});
+
+	const fila = document.querySelector('.contenedor-carousel');
+const peliculas = document.querySelectorAll('.pelicula');
+
+const flechaIzquierda = document.getElementById('flecha-izquierda');
+const flechaDerecha = document.getElementById('flecha-derecha');
+
+// ? ----- ----- Event Listener para la flecha derecha. ----- -----
+flechaDerecha.addEventListener('click', () => {
+	fila.scrollLeft += fila.offsetWidth;
+
+	const indicadorActivo = document.querySelector('.indicadores .activo');
+	if(indicadorActivo.nextSibling){
+		indicadorActivo.nextSibling.classList.add('activo');
+		indicadorActivo.classList.remove('activo');
+	}
+});
+
+// ? ----- ----- Event Listener para la flecha izquierda. ----- -----
+flechaIzquierda.addEventListener('click', () => {
+	fila.scrollLeft -= fila.offsetWidth;
+
+	const indicadorActivo = document.querySelector('.indicadores .activo');
+	if(indicadorActivo.previousSibling){
+		indicadorActivo.previousSibling.classList.add('activo');
+		indicadorActivo.classList.remove('activo');
+	}
+});
+
+// ? ----- ----- Paginacion ----- -----
+const numeroPaginas = Math.ceil(peliculas.length / 5);
+for(let i = 0; i < numeroPaginas; i++){
+	const indicador = document.createElement('button');
+
+	if(i === 0){
+		indicador.classList.add('activo');
+	}
+
+	document.addEventListener('DOMContentLoaded', (event) => {
+
+		fila.scrollLeft = i * fila.offsetWidth;
+
+		document.querySelector('.indicadores .activo').classList.remove('activo');
+		e.target.classList.add('activo');
+	});
+}
+
+// ? ----- ----- Hover ----- -----
+peliculas.forEach((pelicula) => {
+	pelicula.addEventListener('mouseenter', (e) => {
+		const elemento = e.currentTarget;
+		setTimeout(() => {
+			peliculas.forEach(pelicula => pelicula.classList.remove('hover'));
+			elemento.classList.add('hover');
+		}, 300);
+	});
+});
+
+fila.addEventListener('mouseleave', () => {
+	peliculas.forEach(pelicula => pelicula.classList.remove('hover'));
+});
+</script>
+</body>
+</html>
